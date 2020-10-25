@@ -1,0 +1,211 @@
+#VRML V2.0 utf8
+
+WorldInfo {
+    title "Avion"
+}
+
+Viewpoint {
+    position 0.0 0.0 5.0
+    description "Entry view"
+}
+
+NavigationInfo {
+    type [ "EXAMINE", "ANY" ]
+    headlight TRUE
+}
+
+Background {
+    skyColor    [ 0.0 0.8 1.0 ]
+    groundColor [ 0.0 0.7 0.0 ]
+}
+
+DEF Avion Transform {
+	children [
+		#TRUP
+		Transform {
+			scale 1.9 0.3 0.4
+			children [
+				DEF Kugla1 Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1.0 1.0 1.0
+						}
+						texture ImageTexture {
+							url "trup.jpg" #slika teksture trupa
+						}
+					}
+					geometry Sphere { 
+					}
+				}
+			]
+		}
+			
+		#KRILA
+		
+		#LIJEVO KRILO
+		Transform {
+			translation 0.0 0.0 -1.0
+			rotation 0.0 1.0 0.0 0.1
+			scale 0.38 0.06 1.28
+			children [
+				DEF Krilo Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1.0 1.0 1.0
+						}
+					}
+					geometry Sphere {
+						radius 1.0
+					}
+				}
+				Transform {
+					translation 1.0 1.0 -0.2
+					rotation 0.0 1.0 0.0 0.02
+					scale 1.2 2.5 0.1
+					children [
+						#MOTOR
+						DEF Motor Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor 1.0 1.0 1.0
+								}
+							}
+							geometry Sphere {
+								radius 1.0
+							}
+						}
+						#PROPELER OKOMITI DIO
+						Transform {
+							translation 1.0 0.0 0.0
+							scale 0.05 4.0 0.5
+							children [
+								DEF Propeler Shape {
+									appearance Appearance {
+										material Material {
+										diffuseColor 1.0 1.0 1.0
+										}
+									}
+									geometry Sphere {
+										radius 0.7
+									}
+								}
+							]
+						}
+						#PROPELER VODORAVNI DIO
+						Transform {
+							translation 1.0 0.0 0.0
+							rotation 1.0 0.0 0.0 1.57
+							scale 0.05 4.0 0.5
+							children [USE Propeler]
+						}	
+					]
+				}
+			]
+		}
+		
+		#DESNO KRILO
+		Transform {
+			translation 0.0 0.0 1.0
+			rotation 0.0 1.0 0.0 -0.1
+			scale 0.38 0.06 1.28
+			children [
+				USE Krilo
+				Transform {
+					translation 1.0 1.0 0.2
+					rotation 0.0 1.0 0.0 -0.02
+					scale 1.2 2.5 0.1
+					children [
+						#MOTOR
+						USE Motor
+						#PROPELER OKOMITI DIO
+						Transform {
+							translation 1.0 0.0 0.0
+							scale 0.05 4.0 0.5
+							children [USE Propeler]
+						}
+						#PROPELER VODORAVNI DIO
+						Transform {
+							translation 1.0 0.0 0.0
+							rotation 1.0 0.0 0.0 1.57
+							scale 0.05 4.0 0.5
+							children [USE Propeler]
+						}
+					]
+				}
+			]
+		}
+		#INICIJALI
+		Transform {
+			translation 0.0 0.05 -0.4
+			rotation 0.0 1.2 0.0 1.57
+			children [
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1.0 0.0 1.0 #boja inicijala
+						}
+					}
+					geometry Text {
+						string "HI" #inicijali
+					}
+				}
+			]
+		}
+		
+		#REP
+		Transform {
+			translation -1.5 0.25 0.0
+			rotation 0.0 0.0 1.0 -0.8
+			scale 0.5 0.2 0.075
+			children [ 
+				#BAZA
+				DEF Kugla2 Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1.0 1.0 1.0
+						}
+					}
+					geometry Sphere { 
+					}
+				}
+				#LIJEVI DIO
+				Transform {
+					translation -0.75 0.5 -5.0
+					rotation 0.0 0.0 1.0 2.75
+					scale 0.05 0.5 5.5
+					children [USE Krilo]
+				}
+				#DESNI DIO
+				Transform {
+					translation -0.75 0.5 5.0
+					rotation 0.0 0.0 1.0 2.75
+					scale 0.05 0.5 5.5
+					children [USE Krilo]
+				}
+				Transform {
+					translation -0.5 1.0 0.0
+					rotation 0.0 0.0 1.0 1.3
+					scale 1.7 0.3 2.0
+					children [
+						#MOTOR
+						USE Motor
+						#PROPELER OKOMITI DIO
+						Transform {
+							translation 1.0 0.0 0.0
+							rotation 0.0 0.0 1.0 -0.24
+							scale 0.05 4.0 0.5
+							children [USE Propeler]
+						}
+						#PROPELER VODORAVNI DIO
+						Transform {
+							translation 1.0 0.0 0.0
+							rotation 0.0 0.0 1.0 -0.24
+							scale 0.05 0.5 4.0
+							children [USE Propeler]
+						}
+					]
+				}
+			]
+		}
+	]
+}
